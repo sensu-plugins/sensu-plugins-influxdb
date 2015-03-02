@@ -1,20 +1,32 @@
-## Sensu-Plugins-disk-checks
+## Sensu-Plugins-influxdb
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-influxdb.svg?branch=master)][1]
-[![Gem Version](https://badge.fury.io/rb/sensu-plugins-influxdb.svg)][2]
-[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb/badges/gpa.svg)][3]
-[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb/badges/coverage.svg)][4]
-[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-influxdb.svg)][5]
+[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-influxdb.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-influxdb)
+[![Gem Version](https://badge.fury.io/rb/sensu-plugins-influxdb.svg)](http://badge.fury.io/rb/sensu-plugins-influxdb)
+[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb)
+[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb)
+[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-influxdb.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-influxdb)
 
 ## Functionality
 
 ## Files
- *
- *
- *
- *
+ * bin/check-influxdb
+ * bin/check-influxdb-query
+ * bin/metrics-influxdb
 
 ## Usage
+
+**metrics-influxdb**
+```
+{
+    "influxdb"   : {
+               "server"      : "influxdb.familyguy.com",
+               "port"        : "8086",
+               "username"    : "root",
+               "password"    : "root",
+               "database"    : "stats"
+     }
+}
+```
 
 ## Installation
 
