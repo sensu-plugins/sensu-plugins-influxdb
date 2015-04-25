@@ -27,12 +27,14 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 require 'net/http'
 require 'uri'
 require 'json'
 
+#
+# Check InfluxDB
+#
 class CheckInfluxDB < Sensu::Plugin::Check::CLI
   option :host,
          description: 'Host address of the InfluxDB server',

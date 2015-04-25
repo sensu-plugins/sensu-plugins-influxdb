@@ -35,8 +35,11 @@ require 'json'
 require 'jsonpath'
 require 'dentaku'
 
-VERSION = '0.1.0'
+# VERSION = '0.1.0'
 
+#
+# Check Influxdb Query
+#
 class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
   check_name nil
   option :host,
@@ -114,16 +117,16 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
          show_options: true,
          exit: 0
 
-  option :version,
-         short: '-v',
-         long: '--version',
-         description: 'Show version',
-         on: :tail,
-         boolean: true,
-         proc: proc { puts "Version #{VERSION}" },
-         exit: 0
+  # option :version,
+  #        short: '-v',
+  #        long: '--version',
+  #        description: 'Show version',
+  #        on: :tail,
+  #        boolean: true,
+  #        proc: proc { puts "Version #{VERSION}" },
+  #        exit: 0
 
-  def run
+  def run # rubocop:disable all
     influxdb = InfluxDB::Client.new config[:database],
                                     host: config[:host],
                                     port: config[:port],

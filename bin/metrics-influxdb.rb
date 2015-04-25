@@ -1,9 +1,36 @@
-#!/usr/bin/env ruby
+#! /usr/bin/env ruby
+#
+#   metrics-influx.rb
+#
+# DESCRIPTION:
+#
+# OUTPUT:
+#   plain text
+#
+# PLATFORMS:
+#   Linux
+#
+# DEPENDENCIES:
+#   gem: sensu-plugin
+#   gem: influxdb
+#
+# USAGE:
+#   #YELLOW
+#
+# NOTES:
+#
+# LICENSE:
+#   Copyright (C) 2015, Sensu Plugins
+#   Released under the same terms as Sensu (the MIT license); see LICENSE
+#   for details.
+#
 
-require 'rubygems'
 require 'sensu-handler'
 require 'influxdb'
 
+#
+# Sensu To Influxdb
+#
 class SensuToInfluxDB < Sensu::Handler
   def filter; end
 
