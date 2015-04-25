@@ -34,7 +34,6 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsInfluxdb::Version::VER_STRING
 
-  s.add_runtime_dependency 'sensu-plugin', '1.1.0'
   s.add_runtime_dependency 'json',         '1.8.2'
   s.add_runtime_dependency 'influxdb',     '0.1.8'
   s.add_runtime_dependency 'jsonpath',     '0.5.6'
