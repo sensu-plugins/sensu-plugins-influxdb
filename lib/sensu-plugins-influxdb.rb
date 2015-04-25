@@ -1,4 +1,4 @@
-require 'sensu-plugins-influx/version'
+require 'sensu-plugins-influxdb/version'
 
 # Load the defaults
 
