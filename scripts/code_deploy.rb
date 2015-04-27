@@ -4,7 +4,6 @@ plugin = File.basename(File.expand_path('.'))
 spec = Gem::Specification.load("#{ plugin }.gemspec")
 lib = File.expand_path('../lib')
 version_file = "lib/#{ plugin }/version.rb"
-github_org = ''
 
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require_relative "../../#{ plugin }/lib/#{ plugin }"
@@ -50,7 +49,7 @@ end
 #
 # Create Github tag and release
 #
-def create_github_release(spec, plugin)
+def create_github_release(spec, plugin, github_token)
   `curl -H "Authorization: token #{ github_token }" -d '{ "tag_name": "#{ spec.version }", "target_commitish": "#{ ENV['CI_COMMIT_ID'] }", "name": "#{ spec.version }", "body": "#{ ENV['CI_MESSAGE'] }", "draft": "#{ spec.metadata['release_draft']}", "prerelease": "#{ spec.metadata['release_prerelease']}" }' https://api.github.com/repos/#{ github_org }/#{ plugin }/releases` # rubocop:disable all
 end
 
@@ -75,11 +74,9 @@ def create_github_commit(plugin)
   `git push repo master`
 end
 
-end
-
 if ENV['CI_MESSAGE'] == 'deploy'
   version_bump(version_file)
   create_github_commit(plugin)
   deploy_rubygems(spec, plugin)
-  create_github_release(spec, plugin)
+  create_github_release(spec, plugin, github_token)
 end
