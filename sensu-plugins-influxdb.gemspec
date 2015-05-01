@@ -19,12 +19,12 @@ Gem::Specification.new do |s|
   s.email                  = '<sensu-users@googlegroups.com>'
   s.executables            = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
-  s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-campfire'
+  s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-influxdb'
   s.license                = 'MIT'
   s.metadata               = { 'maintainer'         => '@mattyjones',
                                'development_status' => 'active',
                                'production_status'  => 'unstable - testing recommended',
-                               'releae_draft'       => 'false',
+                               'release_draft'      => 'false',
                                'release_prerelease' => 'false'
   }
   s.name                   = 'sensu-plugins-influxdb'
