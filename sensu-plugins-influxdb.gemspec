@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'influxdb',     '0.1.8'
   s.add_runtime_dependency 'jsonpath',     '0.5.6'
   s.add_runtime_dependency 'dentaku',      '1.2.4'
-  s.add_runtime_dependency 'sensu-plugin', '1.1.0'
+  s.add_runtime_dependency 'sensu-plugin', '1.2.0'
 
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'rubocop',                   '0.30'
