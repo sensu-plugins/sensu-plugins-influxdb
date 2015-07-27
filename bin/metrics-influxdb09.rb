@@ -35,37 +35,32 @@ class SensuToInfluxDB < Sensu::Handler
   def filter; end
 
   def handle
-    influxdb_server = settings['influxdb']['server']
-    influxdb_port   = settings['influxdb']['port']
-    influxdb_user   = settings['influxdb']['username']
-    influxdb_pass   = settings['influxdb']['password']
-    influxdb_db     = settings['influxdb']['database']
-    influxdb_time_p = settings['influxdb']['time_precision']
+    opts = settings['influxdb']
+    database = opts['database']
 
-    influxdb_data = InfluxDB::Client.new influxdb_db, host: influxdb_server,
-                                                      username: influxdb_user,
-                                                      password: influxdb_pass,
-                                                      port: influxdb_port
-                                                      time_precision: influxdb_time_p
-                                                      
+    influxdb_data = InfluxDB::Client.new database, opts
+
     client_name = @event['client']['name']
     metric_name = @event['check']['name']
-    
+
     metric_raw = @event['check']['output']
+
+    data = []
+    metric_raw.split("\n").each do |metric|
+      m = metric.split
+      next unless m.count == 3
+      key = m[0].split('.', 2)[1]
+      key.gsub!('.', '_')
+      value = m[1].to_f
+      time = m[2]
+      data.push({ series: key,
+                  tags: { host: client_name, metric: metric_name },
+                  values: { value: value },
+                  timestamp: time
+                })
+    end
     
-    mydata = metric_raw.split("\n")
-      .map(&:split)
-      .select { |(*x)| x.length==3 }
-      .map do |(k, v, time)|
-        {
-          series: k,
-          tags: { host: client_name, metric: metric_name },
-          values: { value: v },
-          timestamp: time
-        }
-      end
-    
-    influxdb_data.write_points(mydata, influxdb_time_p)
+    influxdb_data.write_points(data)
 
   end
 end
