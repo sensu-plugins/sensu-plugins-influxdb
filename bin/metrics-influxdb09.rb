@@ -26,6 +26,7 @@
 #
 
 require 'sensu-handler'
+gem 'influxdb', '>=0.2.0'
 require 'influxdb'
 
 #
