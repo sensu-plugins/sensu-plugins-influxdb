@@ -54,11 +54,12 @@ class SensuToInfluxDB < Sensu::Handler
       key.gsub!('.', '_')
       value = m[1].to_f
       time = m[2]
-      data.push({ series: key,
-                  tags: { host: client_name, metric: metric_name },
-                  values: { value: value },
-                  timestamp: time
-                })
+      point = { series: key,
+                tags: { host: client_name, metric: metric_name },
+                values: { value: value },
+                timestamp: time
+              }
+      data.push(point)
     end
     
     influxdb_data.write_points(data)
