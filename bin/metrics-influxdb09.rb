@@ -61,8 +61,6 @@ class SensuToInfluxDB < Sensu::Handler
               }
       data.push(point)
     end
-    
     influxdb_data.write_points(data)
-
   end
 end
