@@ -19,7 +19,8 @@
 ```
 {
     "influxdb"   : {
-               "host(s)"        : "influxdb.familyguy.com",
+               "hosts"          : ["influxdb.familyguy.com", ],
+               "host"           : "influxdb.familyguy.com",
                "port"           : "8086",
                "username"       : "root",
                "password"       : "root",
