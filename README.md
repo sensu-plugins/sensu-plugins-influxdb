@@ -12,37 +12,10 @@
  * bin/check-influxdb.rb
  * bin/check-influxdb-query.rb
  * bin/metrics-influxdb.rb
- * bin/metrics-influxdb09.rb
 
 ## Usage
 
 **metrics-influxdb**
-```
-{
-    "influxdb"   : {
-               "host(s)"        : "influxdb.familyguy.com",
-               "port"           : "8086",
-               "username"       : "root",
-               "password"       : "root",
-               "database"       : "stats"
-               # OPTIONAL
-               "time_precision" : "s",
-               "use_ssl         : false,
-               "verify_ssl      : true,
-               "ssl_ca_cert     : false,
-               "auth_method     : "params",
-               "initial_delay   : 0.01,
-               "max_delay       : 30,
-               "open_timeout    : 5,
-               "read_timeout    : 300,
-               "retry           : nil,
-               "prefix          : '',
-               "denormalize     : true
-     }
-}
-```
-
-**metrics-influxdb09**
 ```
 {
     "influxdb"   : {

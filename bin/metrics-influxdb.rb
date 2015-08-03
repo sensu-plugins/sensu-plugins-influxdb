@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   metrics-influx09.rb
+#   metrics-influx.rb
 #
 # DESCRIPTION:
 #
