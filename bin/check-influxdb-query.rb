@@ -76,7 +76,7 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
          short: '-q QUERY',
          long: '--query QUERY',
          required: true,
-         description: 'Query to run. See http://influxdb.com/docs/v0.8/api/query_language.html'
+         description: 'Query to run. See https://influxdb.com/docs/v0.9/query_language/query_syntax.html'
 
   option :alias,
          short: '-a ALIAS',
