@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   metrics-influx.rb
+#   metrics-influx09.rb
 #
 # DESCRIPTION:
 #
@@ -26,7 +26,7 @@
 #
 
 require 'sensu-handler'
-gem 'influxdb', '<=0.1.9'
+gem 'influxdb', '>=0.2.0'
 require 'influxdb'
 
 #
@@ -36,28 +36,31 @@ class SensuToInfluxDB < Sensu::Handler
   def filter; end
 
   def handle
-    influxdb_server = settings['influxdb']['server']
-    influxdb_port   = settings['influxdb']['port']
-    influxdb_user   = settings['influxdb']['username']
-    influxdb_pass   = settings['influxdb']['password']
-    influxdb_db     = settings['influxdb']['database']
+    opts = settings['influxdb']
+    database = opts['database']
 
-    influxdb_data = InfluxDB::Client.new influxdb_db, host: influxdb_server,
-                                                      username: influxdb_user,
-                                                      password: influxdb_pass,
-                                                      port: influxdb_port,
-                                                      server: influxdb_server
-    mydata = []
-    @event['check']['output'].each do |metric|
+    influxdb_data = InfluxDB::Client.new database, opts
+
+    client_name = @event['client']['name']
+    metric_name = @event['check']['name']
+
+    metric_raw = @event['check']['output']
+
+    data = []
+    metric_raw.split("\n").each do |metric|
       m = metric.split
       next unless m.count == 3
       key = m[0].split('.', 2)[1]
       key.gsub!('.', '_')
       value = m[1].to_f
-      mydata = { host: @event['client']['name'], value: value,
-                 ip: @event['client']['address']
-               }
-      influxdb_data.write_point(key, mydata)
+      time = m[2]
+      point = { series: key,
+                tags: { host: client_name, metric: metric_name },
+                values: { value: value },
+                timestamp: time
+              }
+      data.push(point)
     end
+    influxdb_data.write_points(data)
   end
 end
