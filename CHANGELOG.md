@@ -5,8 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 ### Changed
+- updated metrics-influxdb.rb to symbolize keys for InfluxDB::Client
 - updated influxdb gem to 0.2.2
-- updated metrcis-influxdb.rb to support influxdb 0.9.x
+- updated metrics-influxdb.rb to support influxdb 0.9.x
 - updated README.md file
 
 ## [0.0.3] - 2015-07-14
