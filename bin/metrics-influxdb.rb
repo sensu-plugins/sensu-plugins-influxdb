@@ -36,8 +36,11 @@ class SensuToInfluxDB < Sensu::Handler
   def filter; end
 
   def handle
-    opts = settings['influxdb']
-    database = opts['database']
+    opts = settings['influxdb'].each_with_object({}) do |(k, v), sym|
+      sym[k.to_sym] = v
+    end
+
+    database = opts[:database]
 
     influxdb_data = InfluxDB::Client.new database, opts
 
