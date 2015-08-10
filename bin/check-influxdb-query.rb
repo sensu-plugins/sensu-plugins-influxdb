@@ -126,7 +126,7 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
   #        proc: proc { puts "Version #{VERSION}" },
   #        exit: 0
 
-  def run # rubocop:disable all
+  def run
     influxdb = InfluxDB::Client.new config[:database],
                                     host: config[:host],
                                     port: config[:port],
