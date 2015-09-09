@@ -28,9 +28,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-require 'net/http'
-require 'uri'
-require 'json'
+require 'net/https'
 
 #
 # Check InfluxDB
@@ -49,12 +47,24 @@ class CheckInfluxDB < Sensu::Plugin::Check::CLI
          proc: proc(&:to_i),
          default: 8086
 
-  option :ssl,
+  option :use_ssl,
          description: 'Turn on/off SSL (default: false)',
          short: '-s',
-         long: '--ssl',
+         long: '--use_ssl',
          boolean: true,
          default: false
+
+  option :verify_ssl,
+         description: 'Turn on/off using SSL certificate (default: false)',
+         short: '-v',
+         long: '--verify_ssl',
+         boolean: true,
+         default: false
+
+  option :ssl_ca_cert,
+         description: 'Path to the ssl ca certificate to connect to the InfluxDB server',
+         short: '-c CA_CERT',
+         long: '--ssl_ca_cert CA_CERT'
 
   option :timeout,
          description: 'Seconds to wait for the connection to open or read (default: 1.0s)',
@@ -67,7 +77,13 @@ class CheckInfluxDB < Sensu::Plugin::Check::CLI
     http = Net::HTTP.new(config[:host], config[:port])
     http.open_timeout = config[:timeout]
     http.read_timeout = config[:timeout]
-    http.use_ssl = config[:ssl]
+    http.use_ssl = config[:use_ssl]
+    if config[:verify_ssl]
+      http.ca_file = config[:ssl_ca_cert]
+      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    else
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
     http.start do
       response = http.get('/ping')
       status_line = "#{response.code} #{response.message}"
