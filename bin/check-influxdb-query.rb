@@ -54,6 +54,25 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
          default: '8086',
          description: 'InfluxDB port'
 
+  option :use_ssl,
+         description: 'Turn on/off SSL (default: false)',
+         short: '-s',
+         long: '--use_ssl',
+         boolean: true,
+         default: false
+
+  option :verify_ssl,
+         description: 'Turn on/off using SSL certificate (default: false)',
+         short: '-v',
+         long: '--verify_ssl',
+         boolean: true,
+         default: false
+
+  option :ssl_ca_cert,
+         description: 'Path to the ssl ca certificate to connect to the InfluxDB server',
+         short: '-c CA_CERT',
+         long: '--ssl_ca_cert CA_CERT'
+
   option :database,
          short: '-d DATABASE',
          long: '--database DATABASE',
@@ -130,6 +149,9 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
     influxdb = InfluxDB::Client.new config[:database],
                                     host: config[:host],
                                     port: config[:port],
+                                    use_ssl: config[:use_ssl],
+                                    verify_ssl: config[:verify_ssl],
+                                    ssl_ca_cert: config[:ssl_ca_cert],
                                     username: config[:username],
                                     password: config[:password]
 
