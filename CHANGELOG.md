@@ -4,7 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
-- nothing
+- added support for https in check-influxdb.
+- pass ssl arguments to the influxdb object in check-influxdb-query.
+- renamed the config option in check-influxdb from ssl to verify_ssl.
+- changed README to update the config option ssl_ca_cert.
 
 ### [0.0.3] - 2015-08-10
 - updated metrics-influxdb.rb to symbolize keys for InfluxDB::Client

@@ -29,7 +29,7 @@
         "time_precision": "s",
         "use_ssl"       : false,
         "verify_ssl"    : true,
-        "ssl_ca_cert"   : false,
+        "ssl_ca_cert"   : "path to the ca certificate file",
         "auth_method"   : "params",
         "initial_delay" : 0.01,
         "max_delay"     : 30,
