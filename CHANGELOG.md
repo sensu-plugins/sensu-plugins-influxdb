@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
+- Line protocol mutator extension
 
 ### [0.0.5] - 2015-10-19
 - added support for https in check-influxdb.
