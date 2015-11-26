@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.description            = 'This plugin provides native InfluxDB instrumentation
                               for monitoring and metrics collection, including:
                               service health via `/ping`, running queries, and service
-                              metrics'
+                              metrics.'
   s.email                  = '<sensu-users@googlegroups.com>'
   s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
