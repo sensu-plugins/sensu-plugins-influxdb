@@ -41,6 +41,7 @@
     }
 }
 ```
+To ship additional tags to your metrics via metrics-influxdb.rb (only available in influxdb >= 0.9), just add a tags block inside your check.
 
 ## Installation
 
