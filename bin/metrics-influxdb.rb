@@ -48,6 +48,7 @@ class SensuToInfluxDB < Sensu::Handler
     metric_name = @event['check']['name']
 
     metric_raw = @event['check']['output']
+    tags = @event['check']['tags']
 
     data = []
     metric_raw.split("\n").each do |metric|
@@ -62,6 +63,7 @@ class SensuToInfluxDB < Sensu::Handler
                 values: { value: value },
                 timestamp: time
               }
+      point[:tags].merge!(tags) unless tags.nil?
       data.push(point)
     end
     influxdb_data.write_points(data)
