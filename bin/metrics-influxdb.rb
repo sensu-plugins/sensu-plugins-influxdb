@@ -54,7 +54,7 @@ class SensuToInfluxDB < Sensu::Handler
       m = metric.split
       next unless m.count == 3
       key = m[0].split('.', 2)[1]
-      key.gsub!('.', '_')
+      key.tr!('.', '_')
       value = m[1].to_f
       time = m[2]
       point = { series: key,
