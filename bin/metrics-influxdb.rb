@@ -58,7 +58,7 @@ class SensuToInfluxDB < Sensu::Handler
       key.tr!('.', '_')
       value = m[1].to_f
       time = m[2]
-      custom_tags = { }
+      custom_tags = {}
       custom_tags_raw = m[3..-1]
       custom_tags_raw.each do |custom_tag|
         t = custom_tag.split('=')
