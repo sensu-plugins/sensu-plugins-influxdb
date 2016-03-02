@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-influxdb)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-influxdb.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-influxdb)
-[![Codeship Status for sensu-plugins/sensu-plugins-influxdb](https://codeship.com/projects/94979580-cd12-0132-f567-767651b3a193/status?branch=master)](https://codeship.com/projects/76219)
+
 ## Functionality
 
 ## Files

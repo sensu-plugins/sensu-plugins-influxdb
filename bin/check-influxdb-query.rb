@@ -157,11 +157,11 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
 
     value = influxdb.query config[:query]
 
-    if config[:alias]
-      query_name = config[:alias]
-    else
-      query_name = config[:query]
-    end
+    query_name = if config[:alias]
+                   config[:alias]
+                 else
+                   config[:query]
+                 end
 
     if config[:noresult] && value.empty?
       critical "No result for query '#{query_name}'"
