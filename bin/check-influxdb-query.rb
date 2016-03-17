@@ -70,7 +70,7 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
 
   option :ssl_ca_cert,
          description: 'Path to the ssl ca certificate to connect to the InfluxDB server',
-         short: '-c CA_CERT',
+         short: '-C CA_CERT',
          long: '--ssl_ca_cert CA_CERT'
 
   option :database,
