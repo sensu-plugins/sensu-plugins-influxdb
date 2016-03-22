@@ -35,6 +35,37 @@ require 'influxdb'
 class SensuToInfluxDB < Sensu::Handler
   def filter; end
 
+  def create_point(series, value, time)
+    point = { series: series,
+              tags: { host: @event['client']['name'], metric: @event['check']['name'] },
+              values: { value: value },
+              timestamp: time
+            }
+    point[:tags].merge!(@event['check']['tags']) unless @event['check']['tags'].nil?
+    point
+  end
+
+  def parse_output
+    data = []
+    metric_raw = @event['check']['output']
+    metric_raw.split("\n").each do |metric|
+      m = metric.split
+      next unless m.count == 3
+      key = m[0].split('.', 2)[1]
+      key.tr!('.', '_')
+      value = m[1].to_f
+      time = m[2]
+      point = create_point(key, value, time)
+      data.push(point)
+    end
+    data
+  end
+
+  def check_status
+    data = []
+    data.push(create_point(@event['client']['name'], @event['check']['status'], @event['client']['timestamp']))
+  end
+
   def handle
     opts = settings['influxdb'].each_with_object({}) do |(k, v), sym|
       sym[k.to_sym] = v
@@ -44,28 +75,12 @@ class SensuToInfluxDB < Sensu::Handler
 
     influxdb_data = InfluxDB::Client.new database, opts
 
-    client_name = @event['client']['name']
-    metric_name = @event['check']['name']
+    data = if opts[:status] == false || opts[:status].nil?
+             parse_output
+           else
+             check_status
+           end
 
-    metric_raw = @event['check']['output']
-    tags = @event['check']['tags']
-
-    data = []
-    metric_raw.split("\n").each do |metric|
-      m = metric.split
-      next unless m.count == 3
-      key = m[0].split('.', 2)[1]
-      key.tr!('.', '_')
-      value = m[1].to_f
-      time = m[2]
-      point = { series: key,
-                tags: { host: client_name, metric: metric_name },
-                values: { value: value },
-                timestamp: time
-              }
-      point[:tags].merge!(tags) unless tags.nil?
-      data.push(point)
-    end
     influxdb_data.write_points(data)
   end
 end

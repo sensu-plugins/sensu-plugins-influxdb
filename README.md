@@ -37,11 +37,14 @@
         "read_timeout"  : 300,
         "retry"         : null,
         "prefix"        : "",
-        "denormalize"   : true
+        "denormalize"   : true,
+        "status"        : true
     }
 }
 ```
 To ship additional tags to your metrics via metrics-influxdb.rb (only available in influxdb >= 0.9), just add a tags block inside your check.
+
+Setting "status" to true will store the metric using the status as the value and the check name as the series
 
 ## Installation
 

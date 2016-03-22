@@ -7,6 +7,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Line protocol mutator extension
 - added tags support for metrics-influxdb.rb
 - Fixed option tag in check-influxdb-query
+- added support for storing check status for metrics-influxdb.rb
 
 ### [0.0.5] - 2015-10-19
 - added support for https in check-influxdb.
