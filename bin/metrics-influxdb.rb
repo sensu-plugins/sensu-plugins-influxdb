@@ -63,24 +63,23 @@ class SensuToInfluxDB < Sensu::Handler
 
   def check_status
     data = []
-    data.push(create_point(@event['client']['name'], @event['check']['status'], @event['client']['timestamp']))
+    data.push(create_point(@event['check']['name'], @event['check']['status'], @event['client']['timestamp']))
   end
 
   def handle
     opts = settings['influxdb'].each_with_object({}) do |(k, v), sym|
       sym[k.to_sym] = v
     end
-
     database = opts[:database]
 
     influxdb_data = InfluxDB::Client.new database, opts
+    influxdb_data.create_database(database) # Ensure the database exists
 
     data = if opts[:status] == false || opts[:status].nil?
              parse_output
            else
              check_status
            end
-
     influxdb_data.write_points(data)
   end
 end
