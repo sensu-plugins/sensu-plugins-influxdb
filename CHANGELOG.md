@@ -9,6 +9,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - Fixed option tag in check-influxdb-query
 - added support for storing check status for metrics-influxdb.rb
 - metrics-influxdb.rb will now create the database if needed
+- metrics-influxdb.rb can now be configured to use a specific settings block
 
 ### [0.0.5] - 2015-10-19
 - added support for https in check-influxdb.

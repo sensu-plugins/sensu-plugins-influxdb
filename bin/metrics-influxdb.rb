@@ -33,6 +33,12 @@ require 'influxdb'
 # Sensu To Influxdb
 #
 class SensuToInfluxDB < Sensu::Handler
+  option :config,
+         description: 'Configuration information to use',
+         short: '-c CONFIG',
+         long: '--config CONFIG',
+         default: 'influxdb'
+
   def filter; end
 
   def create_point(series, value, time)
@@ -67,7 +73,7 @@ class SensuToInfluxDB < Sensu::Handler
   end
 
   def handle
-    opts = settings['influxdb'].each_with_object({}) do |(k, v), sym|
+    opts = settings[config[:config]].each_with_object({}) do |(k, v), sym|
       sym[k.to_sym] = v
     end
     database = opts[:database]
