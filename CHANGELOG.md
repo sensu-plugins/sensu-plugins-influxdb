@@ -11,6 +11,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - metrics-influxdb.rb will now create the database if needed
 - metrics-influxdb.rb can now be configured to use a specific settings block
 
+### [0.0.6] - 2016-04-18
+- renamed config options flags (host, port and ssl_ca_cert) in check-influxdb-query.
+
 ### [0.0.5] - 2015-10-19
 - added support for https in check-influxdb.
 - pass ssl arguments to the influxdb object in check-influxdb-query.
