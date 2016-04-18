@@ -43,13 +43,13 @@ require 'dentaku'
 class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
   check_name nil
   option :host,
-         short: '-H HOST',
+         short: '-h HOST',
          long: '--host HOST',
          default: 'localhost',
          description: 'InfluxDB host'
 
   option :port,
-         short: '-P PORT',
+         short: '-p PORT',
          long: '--port PORT',
          default: '8086',
          description: 'InfluxDB port'
@@ -70,7 +70,7 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
 
   option :ssl_ca_cert,
          description: 'Path to the ssl ca certificate to connect to the InfluxDB server',
-         short: '-C CA_CERT',
+         short: '-c CA_CERT',
          long: '--ssl_ca_cert CA_CERT'
 
   option :database,
