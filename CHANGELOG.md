@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+### [0.0.7] - 2016-04-26
 - Line protocol mutator extension
 - added tags support for metrics-influxdb.rb
 - Fixed option tag in check-influxdb-query
@@ -42,8 +44,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.5...HEAD
-[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.4...0.0.5
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.7...HEAD
+[0.0.7]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.6...0.0.7
+[0.0.6]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.5...0.0.6
+[0.0.5]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.4...0.0.5
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.1...0.0.2
