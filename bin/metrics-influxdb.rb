@@ -45,8 +45,7 @@ class SensuToInfluxDB < Sensu::Handler
     point = { series: series,
               tags: { host: @event['client']['name'], metric: @event['check']['name'] },
               values: { value: value },
-              timestamp: time
-            }
+              timestamp: time }
     point[:tags].merge!(@event['check']['tags']) unless @event['check']['tags'].nil?
     point
   end
