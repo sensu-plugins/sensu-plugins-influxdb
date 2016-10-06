@@ -4,6 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- Ruby 2.3.0 support
+
+### Removed
+- Ruby 1.9.3 support
+
+### Changed
+- Update `influxdb` dep to 0.3.10
+- Update `sensu-plugin` dep to ~> 1.3
+- Update to rubocop 0.40 and cleanup
 
 ### [0.0.7] - 2016-04-26
 - Line protocol mutator extension
