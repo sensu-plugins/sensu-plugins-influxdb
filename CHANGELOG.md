@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.0.0] - 2016-10-06
 ### Added
 - Ruby 2.3.0 support
 
@@ -12,7 +14,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Changed
 - Update `influxdb` dep to 0.3.10
+- Update `dentaku` dep to 2.0.9
 - Update `sensu-plugin` dep to ~> 1.3
+- Update `jsonpath` dep to 0.5.8
 - Update to rubocop 0.40 and cleanup
 
 ### [0.0.7] - 2016-04-26
@@ -54,7 +58,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.7...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.7...1.0.0
 [0.0.7]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.6...0.0.7
 [0.0.6]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.5...0.0.6
 [0.0.5]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.4...0.0.5
