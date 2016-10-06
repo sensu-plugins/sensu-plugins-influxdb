@@ -42,7 +42,7 @@ Add the following to `/etc/sensu/conf.d/influx.conf` "plugin expects `influxdb` 
     }
 }
 ```
-Then add the following to you `/ect/sensu/conf.d/handlers.conf`:
+Then add the following to your `/ect/sensu/conf.d/handlers.conf`:
 ```
 {
   "handlers": {
