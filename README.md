@@ -14,7 +14,7 @@
  * bin/metrics-influxdb.rb
 
 ## Usage
-
+Add the following to `/etc/sensu/conf.d/influx.conf` "plugin expects `influxdb` to be a top level node in the json
 **metrics-influxdb**
 ```
 {
@@ -40,6 +40,17 @@
         "denormalize"   : true,
         "status"        : true
     }
+}
+```
+Then add the following to you `/ect/sensu/conf.d/handlers.conf`:
+```
+{
+  "handlers": {
+     "influx-tcp": {
+       "type": "pipe",
+       "command": "/opt/sensu/embedded/bin/metrics-influxdb.rb"
+     }
+   }
 }
 ```
 To ship additional tags to your metrics via metrics-influxdb.rb (only available in influxdb >= 0.9), just add a tags block inside your check.
