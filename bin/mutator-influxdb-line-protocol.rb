@@ -11,7 +11,7 @@
 # {
 #   "influxdb_udp": {
 #      "type": "udp",
-#      "mutator": "mutator-influxdb-line-protocol",
+#      "mutator": "influxdb_line_protocol",
 #      "socket": {
 #        "host": "mgt-monitor-db1",
 #        "port": 8090
@@ -33,6 +33,7 @@ module Sensu
       end
 
       def run(event)
+        tags = event[:check][:tags]
         host = event[:client][:name]
         metric = event[:check][:name]
         output = event[:check][:output]
@@ -45,7 +46,13 @@ module Sensu
           key.tr!('.', '_')
           value = m[1].to_f
           time = m[2].ljust(19, '0')
-          data << "#{key},host=#{host},metric=#{metric} value=#{value} #{time}"
+          linedata = "#{key},host=#{host},metric=#{metric}"
+          if tags
+            tags.each do |tagname, tagvalue|
+              linedata << ",#{tagname}=#{tagvalue}"
+            end
+          end
+          data << "#{linedata} value=#{value} #{time}"
         end
 
         yield data.join("\n"), 0

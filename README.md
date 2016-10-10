@@ -12,8 +12,9 @@
  * bin/check-influxdb.rb
  * bin/check-influxdb-query.rb
  * bin/metrics-influxdb.rb
+ * bin/mutator-influxdb-line-protocol.rb 
 
-## Usage
+## Usage - metrics-influxdb.rb
 Add the following to `/etc/sensu/conf.d/influx.conf` "plugin expects `influxdb` to be a top level node in the json
 **metrics-influxdb**
 ```
@@ -53,9 +54,52 @@ Then add the following to your `/ect/sensu/conf.d/handlers.conf`:
    }
 }
 ```
-To ship additional tags to your metrics via metrics-influxdb.rb (only available in influxdb >= 0.9), just add a tags block inside your check.
 
 Setting "status" to true will store the metric using the status as the value and the check name as the series
+
+## Usage - mutator-influxdb-line-protocol.rb
+Add the mutator-influxdb-line-protocol.rb file into /etc/sensu/extensions/
+
+Then add the following to your `/ect/sensu/conf.d/handlers.conf`:
+```
+{
+  "handlers": {
+    "influxdb_udp": {
+      "type": "udp",
+      "socket": {
+        "host": "localhost",
+        "port": 8090
+      },
+      "mutator": "influxdb_line_protocol",
+    }
+  }
+}
+```
+
+## Check configuration
+To ship additional tags to your metrics via mutator-influxdb-line-protocol.rb (only available in influxdb >= 0.9), just add a tags block inside your check.
+
+```
+{
+  "checks": {
+    "cpu-metrics": {
+      "command": "/opt/sensu/embedded/bin/metrics-cpu-pcnt-usage.rb",
+      "handlers": [
+        "influxdb_udp"
+      ],
+      "interval": 60,
+      "subscribers": [
+        "base"
+      ],
+      "type": "metric",
+      "standalone": false,
+      "tags": {
+        "group": "operations",
+      }
+    }
+  }
+}
+```
 
 ## Installation
 
