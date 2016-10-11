@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Changed
+- Added tags support for mutator-influxdb-line-protocol.rb 
 
 ## [1.0.0] - 2016-10-06
 ### Added
