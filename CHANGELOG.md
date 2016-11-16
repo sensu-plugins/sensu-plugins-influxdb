@@ -6,6 +6,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [Unreleased]
 ### Changed
 - Added tags support for mutator-influxdb-line-protocol.rb 
+- Added retry support for check-influxdb-query.rb - The InfluxDB gem by default retries indefinitely and will cause the query to hang.  A retry of 12 will retry for approx 37 seconds.
 
 ## [1.0.0] - 2016-10-06
 ### Added

@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsInfluxdb::Version::VER_STRING
 
   s.add_runtime_dependency 'dentaku',      '2.0.9'
-  s.add_runtime_dependency 'influxdb',     '0.3.10'
+  s.add_runtime_dependency 'influxdb',     '0.3.11'
   s.add_runtime_dependency 'jsonpath',     '0.5.8'
   s.add_runtime_dependency 'sensu-plugin', '~> 1.3'
 

@@ -79,6 +79,13 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
          default: 'influxdb',
          description: 'InfluxDB database name'
 
+  option :retry,
+         short: '-r RETRY',
+         long: '--retry RETRY',
+         description: 'InfluxDB retry count with exponential back-off',
+         proc: proc(&:to_i),
+         default: 12
+
   option :username,
          short: '-u USERNAME',
          long: '--username USERNAME',
@@ -152,6 +159,7 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
                                     use_ssl: config[:use_ssl],
                                     verify_ssl: config[:verify_ssl],
                                     ssl_ca_cert: config[:ssl_ca_cert],
+                                    retry: config[:retry],
                                     username: config[:username],
                                     password: config[:password]
 
