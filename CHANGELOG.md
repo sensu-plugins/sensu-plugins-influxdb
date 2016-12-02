@@ -4,9 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-### Changed
+### Added
 - Added tags support for mutator-influxdb-line-protocol.rb 
 - Added retry support for check-influxdb-query.rb - The InfluxDB gem by default retries indefinitely and will cause the query to hang.  A retry of 12 will retry for approx 37 seconds.
+
+### Changed
+- Update to `influxdb` gem 0.3.13
 
 ## [1.0.0] - 2016-10-06
 ### Added
@@ -61,7 +64,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.7...1.0.0
 [0.0.7]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.6...0.0.7
 [0.0.6]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.5...0.0.6
