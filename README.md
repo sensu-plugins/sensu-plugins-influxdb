@@ -15,7 +15,7 @@
  * bin/mutator-influxdb-line-protocol.rb 
 
 ## Usage - metrics-influxdb.rb
-Add the following to `/etc/sensu/conf.d/influx.conf` "plugin expects `influxdb` to be a top level node in the json
+Add the following to `/etc/sensu/conf.d/influx.json` "plugin expects `influxdb` to be a top level node in the json
 **metrics-influxdb**
 ```
 {
@@ -43,7 +43,7 @@ Add the following to `/etc/sensu/conf.d/influx.conf` "plugin expects `influxdb` 
     }
 }
 ```
-Then add the following to your `/etc/sensu/conf.d/handlers.conf`:
+Then add the following to your `/etc/sensu/conf.d/handlers.json`:
 ```
 {
   "handlers": {
@@ -60,7 +60,7 @@ Setting "status" to true will store the metric using the status as the value and
 ## Usage - mutator-influxdb-line-protocol.rb
 Add the mutator-influxdb-line-protocol.rb file into /etc/sensu/extensions/
 
-Then add the following to your `/etc/sensu/conf.d/handlers.conf`:
+Then add the following to your `/etc/sensu/conf.d/handlers.json`:
 ```
 {
   "handlers": {
@@ -70,7 +70,7 @@ Then add the following to your `/etc/sensu/conf.d/handlers.conf`:
         "host": "localhost",
         "port": 8090
       },
-      "mutator": "influxdb_line_protocol",
+      "mutator": "influxdb_line_protocol"
     }
   }
 }
@@ -94,7 +94,7 @@ To ship additional tags to your metrics via mutator-influxdb-line-protocol.rb (o
       "type": "metric",
       "standalone": false,
       "tags": {
-        "group": "operations",
+        "group": "operations"
       }
     }
   }
