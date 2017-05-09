@@ -5,9 +5,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+- Added "mode" into check-influxdb-query check to allow multiple values in a query
+
 ## [1.1.0] - 2016-12-01
 ### Added
-- Added tags support for mutator-influxdb-line-protocol.rb 
+- Added tags support for mutator-influxdb-line-protocol.rb
 - Added retry support for check-influxdb-query.rb - The InfluxDB gem by default retries indefinitely and will cause the query to hang.  A retry of 12 will retry for approx 37 seconds.
 
 ### Changed

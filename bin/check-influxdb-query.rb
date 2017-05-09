@@ -110,6 +110,12 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
          default: nil,
          description: 'Alias of query (e.g. if query and output gets too long)'
 
+  option :mode,
+         short: '-m MODE',
+         long: '--mode MODE',
+         default: 'first',
+         description: 'How the results are being checked (one of "first", "last", "max", "min", "avg") when the query returns more than one value'
+
   option :jsonpath,
          short: '-j JSONPATH',
          long: '--jsonpath JSONPATH',
@@ -179,19 +185,45 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
 
     if config[:jsonpath]
       json_path = JsonPath.new(config[:jsonpath])
-      value = json_path.on(value).first || 0
-
       calc = Dentaku::Calculator.new
-      if config[:critical] && calc.evaluate(config[:critical], value: value)
-        critical "Value '#{value}' matched '#{config[:critical]}' for query '#{query_name}'"
-      elsif config[:warning] && calc.evaluate(config[:warning], value: value)
-        warning "Value '#{value}' matched '#{config[:warning]}' for query '#{query_name}'"
+      if config[:mode] == 'any' && json_path.on(value).length >= 1
+        json_path.on(value).each do |hashval|
+          if config[:critical] && calc.evaluate(config[:critical], value: hashval)
+            critical "Value '#{value}' matched '#{config[:critical]}' for query '#{query_name}'"
+          elsif config[:warning] && calc.evaluate(config[:warning], value: hashval)
+            warning "Value '#{value}' matched '#{config[:warning]}' for query '#{query_name}'"
+          end
+        end
+        ok 'All values OK!'
       else
-        ok "Value '#{value}' ok for query '#{query_name}'"
+        value = get_single_value(json_path, value)
+        if config[:critical] && calc.evaluate(config[:critical], value: value)
+          critical "Value '#{value}' matched '#{config[:critical]}' for query '#{query_name}'"
+        elsif config[:warning] && calc.evaluate(config[:warning], value: value)
+          warning "Value '#{value}' matched '#{config[:warning]}' for query '#{query_name}'"
+        else
+          ok "Value '#{value}' ok for query '#{query_name}'"
+        end
       end
     else
       puts 'Debug output. Use -j to check value...'
       puts JSON.pretty_generate(value)
+    end
+  end
+
+  def get_single_value(jpath, value)
+    return 0 if jpath.on(value).empty?
+    case config[:mode]
+    when 'last'
+      jpath.on(value).last
+    when 'min'
+      jpath.on(value).min
+    when 'max'
+      jpath.on(value).max
+    when 'avg', 'average'
+      jpath.on(value).inject(:+).to_f / jpath.on(value).length
+    else
+      jpath.on(value).first
     end
   end
 end
