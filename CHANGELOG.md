@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- Ruby 2.4.1 testing
+
 ## [1.2.0] - 2017-05-15
 - Added "mode" into check-influxdb-query check to allow multiple values in a query
 
