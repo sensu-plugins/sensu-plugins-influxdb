@@ -42,11 +42,11 @@ module Sensu
         output.split("\n").each do |result|
           m = result.split
           next unless m.count == 3
-          if m[0].start_with?(host)
-            key = m[0][(host.length+1)..-1]
-          else
-            key = m[0].split('.', 2)[1]
-          end
+          key = if m[0].start_with?(host)
+                  m[0][(host.length + 1)..-1]
+                else
+                  m[0].split('.', 2)[1]
+                end
           key.tr!('.', '_')
           value = m[1].to_f
           time = m[2].ljust(19, '0')
