@@ -1,15 +1,20 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
 
+## [1.3.0] - 2018-08-06
 ### Fixed
 - when hostname contains a `.` such as having a FQDN we rely on taking the remaining string rather than doing a split (@cholletk)
+- misc typo in PR template (@majormoses)
 
 ### Added
 - Ruby 2.4.1 testing
+
+### Changed
+- updated changelog guidlines location (@majormoses)
 
 ## [1.2.0] - 2017-05-15
 - Added "mode" into check-influxdb-query check to allow multiple values in a query
@@ -75,7 +80,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/0.0.7...1.0.0

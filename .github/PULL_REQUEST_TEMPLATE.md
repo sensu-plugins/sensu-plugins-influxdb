@@ -4,7 +4,7 @@
 
 #### General
 
-- [ ] Update Changelog following the conventions laid out on [Keep A Changelog](http://keepachangelog.com/)
+- [ ] Update Changelog following the conventions listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 - [ ] Update README with any necessary configuration snippets
 
@@ -24,5 +24,4 @@
 
 #### Purpose
 
-#### Known Compatability Issues
-
+#### Known Compatibility Issues
