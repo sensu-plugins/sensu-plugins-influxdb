@@ -1,9 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
+This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+## [1.4.0] - 2019-02-19
 ### Added
 - Added "sum" mode for check-influxdb.query check
 
@@ -82,7 +84,8 @@ This CHANGELOG follows the format listed  [here](https://github.com/sensu-plugin
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.3.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.4.0...HEAD
+[1.4.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.3.0...1.4.0
 [1.3.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-influxdb/compare/1.0.0...1.1.0
