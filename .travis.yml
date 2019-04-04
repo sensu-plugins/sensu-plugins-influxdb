@@ -4,9 +4,6 @@ cache:
 install:
 - bundle install
 rvm:
-- 2.0
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
 notifications:
@@ -19,17 +16,28 @@ script:
 - bundle exec rake default
 - gem build sensu-plugins-influxdb.gemspec
 - gem install sensu-plugins-influxdb-*.gem
+before_deploy:
+- git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai
 deploy:
-  provider: rubygems
+  - provider: rubygems
   api_key:
     secure: Gi0wpR7myEMf9Asb7gRcNaCM4Z1hpeypetjQJHlaK1H7PI5wFDv/VGhIm0ruBdAaNm4ED4dJDJTMirAb1zlwN4+fAC9xAsbDopp3yUjMnipOdwPjkAtGlW5Dn4QE6x9mwxbeWUzCtPw7yGylTfjb/mgjk7Jlom0SdBEGA6LRSLs=
   gem: sensu-plugins-influxdb
   on:
     tags: true
     all_branches: true
-    rvm: 2.0
-    rvm: 2.1
-    rvm: 2.2
     rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-influxdb
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-disk-checks
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.4.1
+env:
+  global:
+    secure: mayZ2ZMGx0v/efTaupGXs79ni272J2mjoSC6wq+YPbeTw/BV1G/oPXja83Wxnyb1XOzuWHwH5xQUv91luF8KPJp56Xafwczi96LdZx+osYavcpGo+x1u7e4YDG0TSDB5f1elMAraiMHsQPR2TQqCYXQRj16zznCX5nPVAlq+FZPYWPeoNtBLajA68ou4vNVSKswE75OFEvU1DzSHtxQ/Q3biXseZ0puhb+oyV6798l4N0tbe3NHwPaVzsFjXgacg8QCqgtooR2nVAPx3918tyNJeKJHi7RN1h0Fm25t1O5hxwqv9iPtJNh4uF9P1RASnW4a3e0Vc41HenK51AvsjutTeoSudAyCMt0YInT91a1c+9vxXppmhsknCBDy0WUMttE1MLXUgOyG9+xsTuEjnP0JoYG8Y16vEIlIvwx+vo4IqP/YIesbNZ+x14v8pWF8VxklRV7DU74llh9lecffXoG/rHj9l2evOLch1JX8A59p/JdJ4RmIitlvRg90OULa2M6Q6R52In/+CLso8z/ZbRblo6Dj33daJdLupazgTqLGNaCYxfAUOfGblp2piFpiEgYsf1JWptFwwECaIyka0saW3H0ygMUjMt6uFjkcDocchbiY/dV1T9GsX0w79Z2LJkosnpVmpheN11ICMkwZR2Qdw/HBoKbX5PHJUn1rG3Cs=
+
+
