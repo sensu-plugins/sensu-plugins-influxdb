@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Breaking Changes
+- Update minimum required ruby version to 2.3. Drop unsupported ruby versions.
+- Update dependancy on sensu-plugin to 4.0
+
+### Added
+- Travis build automation to generate Sensu Asset tarballs that can be used n conjunction with Sensu provided ruby runtime assets and the Bonsai Asset Index
 
 ## [1.4.0] - 2019-02-19
 ### Added
