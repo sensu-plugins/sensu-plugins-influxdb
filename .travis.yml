@@ -19,7 +19,7 @@ script:
 - gem build sensu-plugins-influxdb.gemspec
 - gem install sensu-plugins-influxdb-*.gem
 before_deploy:
-- git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
 - provider: rubygems
   api_key:
@@ -37,6 +37,3 @@ deploy:
     tags: true
     all_branches: true
     rvm: 2.4.1
-env:
-  global:
-    secure: GS+Xq0bFc73NK8xZG4y0hxQNytw5CtT4IdDbIdxAcGi+CiTC1rj/kRVUHUOFgYkD/tBsLkl8drMyArBp5ycWPmzd00ztZF/7MyMBh98x8hRVsxGFpKcqgssoXzCXJeQDEPx2B13RX1W6NCLZckLJwl2B53o0xMURCBnI77sjOU5WaH356VqTY75gGwnHiGnzZwDi31KzHK2Fh8Ghy02XNOF8SLSMPmsBfInyKFmm6gjB75SSgdZGbrHTxlUu60jjo1KBz6clmdZLB2xdbi/NvxwGKn36RgsrnwUL+WnAKSqYVfm/13bDZxwDVjj+2tHD5DRDBiCgUhQqBUDbjaSBHE7KeW0mRvqnj8gc93agR10NZmBQUy2hvetiLN4KrdtEtrhQhTKtPSA9vHYIQd/stQU/1JVvvO1V4XfGpU48j8PDrbYjEk79XhsxXG+xtcK5z2APWL0Rrw97o/9GQj/hrPuACKw/RM4HmdSL7BniW4wLhH5YqIU6qcY3uy+fUyNDXH0yOS/PWe8jvjHmv8ZiKYY0FrkAuvHlkKURR1wYUMFV8BURJai8lulBhawFDIYm3w8cXIiNSwOjkdTFVFhJ/u8JWAj4/13Fb1tM0tD5wmWoUPR9RoKUGNIlC7OWB9qXg/wipwhr+XEtjJfgZZMJhRgXDDC+jjnNL5dhy3fAQKk=
