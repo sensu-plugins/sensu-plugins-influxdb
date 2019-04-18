@@ -1,12 +1,11 @@
 language: ruby
+services:
+- docker
 cache:
 - bundler
 install:
 - bundle install
 rvm:
-- 2.0
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
 notifications:
@@ -19,17 +18,22 @@ script:
 - bundle exec rake default
 - gem build sensu-plugins-influxdb.gemspec
 - gem install sensu-plugins-influxdb-*.gem
+before_deploy:
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
-  provider: rubygems
+- provider: rubygems
   api_key:
     secure: Gi0wpR7myEMf9Asb7gRcNaCM4Z1hpeypetjQJHlaK1H7PI5wFDv/VGhIm0ruBdAaNm4ED4dJDJTMirAb1zlwN4+fAC9xAsbDopp3yUjMnipOdwPjkAtGlW5Dn4QE6x9mwxbeWUzCtPw7yGylTfjb/mgjk7Jlom0SdBEGA6LRSLs=
   gem: sensu-plugins-influxdb
   on:
     tags: true
     all_branches: true
-    rvm: 2.0
-    rvm: 2.1
-    rvm: 2.2
-    rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-influxdb
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-influxdb
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.4.1
