@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Breaking Changes
+- Return ok for empty result irrespective of jsonpath expression
 
 ### Added
 - Updated asset build targets to support centos6
