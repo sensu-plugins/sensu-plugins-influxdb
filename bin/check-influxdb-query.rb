@@ -182,6 +182,8 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
       critical "No result for query '#{query_name}'"
     elsif config[:noresult] && !config[:jsonpath] && !value.empty?
       ok "Value returned for query '#{query_name}'"
+    elsif !config[:noresult] && config[:jsonpath] && value.empty?
+      ok "No result for the query"
     end
 
     if config[:jsonpath]
