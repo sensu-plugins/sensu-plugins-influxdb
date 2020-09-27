@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'dentaku',      '3.3.4'
   s.add_runtime_dependency 'influxdb',     '0.8.0'
-  s.add_runtime_dependency 'jsonpath',     '0.5.8'
+  s.add_runtime_dependency 'jsonpath',     '1.0.5'
   s.add_runtime_dependency 'sensu-plugin', '~> 4.0'
 
   s.add_development_dependency 'bundler',                   '~> 2.1'
