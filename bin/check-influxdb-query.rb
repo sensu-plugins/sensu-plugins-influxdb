@@ -114,8 +114,8 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
          short: '-m MODE',
          long: '--mode MODE',
          default: 'first',
-         description: 'How the results are being checked (one of "first", "last", "max", "min", "sum", "avg") when the query returns more than one value',
-         in: %w(first last max min sum avg average)
+         description: 'How the results are being checked (one of "first", "last", "max", "min", "sum", "avg", "any") when the query returns more than one value',
+         in: %w(first last max min sum avg average any)
 
   option :jsonpath,
          short: '-j JSONPATH',
@@ -227,7 +227,7 @@ class CheckInfluxdbQuery < Sensu::Plugin::Check::CLI
       jpath.on(value).inject(:+)
     when 'avg', 'average'
       jpath.on(value).inject(:+).to_f / jpath.on(value).length
-    when 'first'
+    when 'first', 'any'
       jpath.on(value).first
     end
   end
